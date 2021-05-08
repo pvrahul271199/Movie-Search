@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* background-color: black; */
+}
+
+.navbar{
+    background-color: black;
+}
+
+main>.jumbotron {
+    background: url(./images/bg5.jpg) 100% 100%;
+    background-size: cover;
+    color: white;
+    height: 45vh;
+    text-align: center;
+    
+}
+
+.moviesearch {
+    font-family: 'Nunito', sans-serif;
+    font-size: 3.9rem;
+    font-weight: 700;
+}
+
+p.lead{
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+form {
+    display: inline-block;
+    text-align: center;
+}
+
+input#movieinp {
+    width: 60vw;
+    border-radius: 6px;
+    border: none;
+    height: 3rem;
+    margin-bottom: 0.6rem;
+    padding: 6px 15px;
+    font-size: 1.2rem;
+    outline: none;
+    float: left;
+}
+
+input[type="submit"]{
+    margin: 0 0.6rem;
+    height: 3rem;
+    font-weight: 700;
+    float: right;
+    outline: none; 
+    background-color: black;
+    color: white;   
+}
+
+
+
+h1.searchresult {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    text-align: left;
+   
+}
+h1.searchresult::before{
+    content: "Showing Results of ";
+    border-bottom: 6px solid #ff0000b5 ;
+    border-bottom-right-radius: 15%;
+    margin: 0 0 0.6rem 0;
+}
+
+img.movieimage {
+    border: 2px solid white;
+
+}
+
+.card {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.card-body{
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+}
+
+.card-body span.movie-title {
+    font-family: 'Raleway', sans-serif;
+    border-bottom: 1px solid rgb(141, 138, 138);
+    text-align: center;
+    display: inline-block;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+span.movie-lang{
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0.5rem 0 0 0;
+}
+span.genres{
+    display: block;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+span.released{
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.foot{
+    height: 30vh;
+    min-height: 300px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.foot>.footer-head{
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+}
