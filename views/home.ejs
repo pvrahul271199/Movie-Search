@@ -1,172 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Search</title>
-
-    <link rel="icon" href="/images/iconpop.jpg">
-    <!-- stylesheet -->
-    <link href="app.css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-
-</head>
-
-<body>
-    <header>
-        <nav class="navbar navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">
-                    <img src="/images/undraw.svg" alt="" class="mb-2" width="60" height="30">
-                    <!--
-                        class="d-inline-block align-text-top"> -->
-                    Showfinder
-                </a>
+<%- include('partials/header') %>
+    <%- include('partials/navbar') %>
+        <main>
+            <div class="jumbotron d-flex justify-content-center align-items-center flex-column">
+                <h1 class="moviesearch">Showfinder</h1>
+                <p class="lead">Search Your Favourite Shows and Movies</p>
+                <form id="form" method="GET" action="/">
+                    <input type="text" name="movie" id="movieinp" placeholder="Type Movie or Show's Keyword">
+                    <!-- <button type="button" class="btn btn-dark">Submit</button> -->
+                    <input type="submit" class="btn btn-dark" value="Submit" />
+                </form>
             </div>
-        </nav>
-    </header>
-    <main>
-        <div class="jumbotron d-flex justify-content-center align-items-center flex-column">
-            <h1 class="moviesearch">Showfinder</h1>
-            <p class="lead">Search Your Favourite Shows and Movies</p>
-            <form id="form" method="GET" action="/">
-                <input type="text" name="movie" id="movieinp" placeholder="Type Movie or Show's Keyword">
-                <!-- <button type="button" class="btn btn-dark">Submit</button> -->
-                <input type="submit" class="btn btn-dark" value="Submit" />
-            </form>
-        </div>
 
-        <div class="container">
-            <% let length=json.length %>
-                <% let eachrow=0 %>
-                    <% let start=0 %>
-                        <% let end=0 %>
-                            <% let j=0 %>
-                                <% if(length < 3){ %>
-                                    <% leachrow=0 %>
-                                        <% end=length %>
-                                            <% } else{ %>
-                                                <% end=start + 3 %>
-                                                    <% eachrow=Math.floor(json.length/3) %>
-                                                        <% } %>
+            <div class="container">
+                <% let length=json.length %>
+                    <% let eachrow=0 %>
+                        <% let start=0 %>
+                            <% let end=0 %>
+                                <% let j=0 %>
+                                    <% if(length < 3){ %>
+                                        <% leachrow=0 %>
+                                            <% end=length %>
+                                                <% } else{ %>
+                                                    <% end=start + 3 %>
+                                                        <% eachrow=Math.floor(json.length/3) %>
+                                                            <% } %>
 
-                                                            <h1 class="searchresult">
-                                                                <!-- Showing -->
-                                                                <%= length %>
-                                                                    <!-- Results -->
-                                                            </h1>
-                                                            <% for(let i=0; i< eachrow + 1; i++){ %>
-                                                                <div class="row d-flex justify-content-center">
-                                                                    <% for(let j=start ; j < end ; j++){ %>
-                                                                        <% if( j<length ){ %>
-                                                                            <div
-                                                                                class="col-md-4 d-flex justify-content-center align-items-start">
-                                                                                <div class="card my-3"
-                                                                                    style="width: 21rem">
+                                                                <h1 class="searchresult">
+                                                                    <!-- Showing -->
+                                                                    <%= length %>
+                                                                        <!-- Results -->
+                                                                </h1>
+                                                                <% for(let i=0; i< eachrow + 1; i++){ %>
+                                                                    <div class="row d-flex justify-content-center">
+                                                                        <% for(let j=start ; j < end ; j++){ %>
+                                                                            <% if( j<length ){ %>
+                                                                                <div
+                                                                                    class="col-md-4 d-flex justify-content-center align-items-start">
+                                                                                    <div class="card my-3"
+                                                                                        style="width: 21rem">
 
-                                                                                    <% if(!json[j].show.image){ %>
-                                                                                        <img class="card-img-top movieimage"
-                                                                                            src="/images/noimage.jpg"
-                                                                                            alt="Card image cap">
-                                                                                        <% }else { %>
+                                                                                        <% if(!json[j].show.image){ %>
                                                                                             <img class="card-img-top movieimage"
-                                                                                                src="<%= json[j].show.image.original %>"
+                                                                                                src="/images/noimage.jpg"
                                                                                                 alt="Card image cap">
+                                                                                            <% }else { %>
+                                                                                                <img class="card-img-top movieimage"
+                                                                                                    src="<%= json[j].show.image.original %>"
+                                                                                                    alt="Card image cap">
 
-                                                                                            <% } %>
+                                                                                                <% } %>
 
 
 
-                                                                                                <div class="card-body">
-                                                                                                    <span
-                                                                                                        class="card-title movie-title my-0">
-                                                                                                        <%= json[j].show.name
-                                                                                                            %>
-                                                                                                    </span>
+                                                                                                    <div
+                                                                                                        class="card-body">
+                                                                                                        <span
+                                                                                                            class="card-title movie-title my-0">
+                                                                                                            <%= json[j].show.name
+                                                                                                                %>
+                                                                                                        </span>
 
-                                                                                                    <span
-                                                                                                        class="movie-lang">
+                                                                                                        <span
+                                                                                                            class="movie-lang">
 
-                                                                                                        <%= json[j].show.language
-                                                                                                            %>
-                                                                                                    </span>
+                                                                                                            <%= json[j].show.language
+                                                                                                                %>
+                                                                                                        </span>
 
-                                                                                                    <span
-                                                                                                        class="genres">
-                                                                                                        Genre
-                                                                                                        -
-                                                                                                        <% for(let
-                                                                                                            genres of
-                                                                                                            json[j].show.genres)
-                                                                                                            { %>
-                                                                                                            <% if(genres)
-                                                                                                                {%>
-                                                                                                                <%= genres
-                                                                                                                    %>
-                                                                                                                    <% }
-                                                                                                                        else{%>
-                                                                                                                        Not
-                                                                                                                        Availble
+                                                                                                        <span
+                                                                                                            class="genres">
+                                                                                                            Genre
+                                                                                                            -
+                                                                                                            <% for(let
+                                                                                                                genres
+                                                                                                                of
+                                                                                                                json[j].show.genres)
+                                                                                                                { %>
+                                                                                                                <% if(genres)
+                                                                                                                    {%>
+                                                                                                                    <%= genres
+                                                                                                                        %>
                                                                                                                         <% }
-                                                                                                                            %>
+                                                                                                                            else{%>
+                                                                                                                            Not
+                                                                                                                            Availble
                                                                                                                             <% }
                                                                                                                                 %>
-                                                                                                    </span>
+                                                                                                                                <% }
+                                                                                                                                    %>
+                                                                                                        </span>
 
 
 
 
-                                                                                                    <span
-                                                                                                        class="released">
-                                                                                                        Preimiered on
-                                                                                                        -
-                                                                                                        <%= json[j].show.premiered
-                                                                                                            %>
-                                                                                                    </span>
-                                                                                                    <div
-                                                                                                        class="card-text">
+                                                                                                        <span
+                                                                                                            class="released">
+                                                                                                            Preimiered
+                                                                                                            on
+                                                                                                            -
+                                                                                                            <%= json[j].show.premiered
+                                                                                                                %>
+                                                                                                        </span>
+                                                                                                        <div
+                                                                                                            class="card-text">
+
+                                                                                                        </div>
 
                                                                                                     </div>
 
-                                                                                                </div>
 
+                                                                                    </div>
 
                                                                                 </div>
 
-                                                                            </div>
-
-                                                                            <% } %>
                                                                                 <% } %>
-                                                                                    <% start=start + 3; %>
-                                                                                        <% end=start + 3; %>
-                                                                </div>
-                                                                <% } %>
-        </div>
+                                                                                    <% } %>
+                                                                                        <% start=start + 3; %>
+                                                                                            <% end=start + 3; %>
+                                                                    </div>
+                                                                    <% } %>
+            </div>
 
 
-    </main>
+        </main>
 
-    <footer class="foot mt-5">
-        <div class="footer-head href=" /">
-            <img src="/images/undraw.svg" alt="" width="132" height="84">
-
-            <h1 class="moviesearch">Showfinder</h1>
-            <p class="lead">Search Your Favourite Show or Movie</p>
-        </div>
-
-    </footer>
-</body>
-
-
-
-</html>
+        <%- include('partials/footer') %>
