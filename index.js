@@ -3,7 +3,7 @@ const path = require('path')
 const axios = require('axios')
 const fetch = require('node-fetch');
 const app = express();
-const port = 8080;
+const port = process.env.port || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine', 'ejs')
